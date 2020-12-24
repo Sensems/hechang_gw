@@ -139,10 +139,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/css/main.scss";
 .content {
   display: flex;
   justify-content: space-between;
-  padding: 30px 140px;
+  padding: 30px 170px;
   background: #4a4b57;
   .menuList {
     display: flex;
@@ -168,9 +169,9 @@ export default {
     }
   }
   .imgWrap {
-    width: 180px;
+    width: 150px;
     img {
-      width: 180px;
+      width: 150px;
       margin-bottom: 4px;
       border-radius: 4px;
     }
@@ -202,16 +203,16 @@ export default {
 .archivalInfo {
   display: flex;
   justify-content: space-between;
-  background-color: #4998f6;
-  color: #fff;
+  background-color: $main-color;
+  color: #333;
   font-size: 12px;
-  padding: 0 50px;
+  padding: 6px 50px;
   p {
 	margin: 0;
 	line-height: 20px;
   }
   a {
-    color: #fff;
+    color: #333;
   }
 	@media screen and (max-width: 414px) {
 		flex-wrap: wrap;

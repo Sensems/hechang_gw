@@ -243,9 +243,9 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/css/main.scss";
 .content {
-  height: 80px;
+  /* height: 80px; */
   background: $main-color;
-  padding: 0 50px;
+  padding: 10px 250px;
   > img {
     height: 80px;
     /* margin-top: 10px; */
@@ -272,13 +272,13 @@ export default {
       margin-right: 0;
     }
     &:hover {
-      background-color: #4a4b57;
+      background-color: #7b7c83;
       a {
         color: #fff;
       }
     }
     &.active {
-      background-color: #4a4b57;
+      background-color: #7b7c83;
       a {
         color: #fff;
       }

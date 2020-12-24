@@ -10,6 +10,9 @@
       <div class="swiperImg">
         <img src="../assets/image/bg3.png" alt="和英阿米巴">
       </div>
+      <div class="swiperImg">
+        <img src="https://www.topamb.com/uploadfiles/pictures/others/20200924154054_7177.jpg" alt="和英阿米巴">
+      </div>
     </a-carousel>
 
     <div class="dataBoard">
@@ -54,7 +57,7 @@
         <div class="title">行业新闻</div>
         <a-carousel>
           <div class="newsSwiper">
-            <img src="https://www.topamb.com/uploadfiles/pictures/others/20200924154054_7177.jpg" alt="和英阿米巴">
+            <img src="https://www.topamb.com/uploadfiles/pictures/news/20201216111859_0900.jpg" alt="和英阿米巴">
           </div>
           <div class="newsSwiper">
             <img src="https://www.topamb.com/uploadfiles/pictures/others/20200924154054_7177.jpg" alt="和英阿米巴">
@@ -65,7 +68,7 @@
             <nuxt-link to="/">公司动态公司动态公司动态公司动态公司动态公司动态公司动态公司动态公司动态</nuxt-link>
           </li>
           <li>
-            <nuxt-link to="/to">公司动态公司动态公司动态公司动态公司动态</nuxt-link>
+            <nuxt-link to="/aa">公司动态公司动态公司动态公司动态公司动态</nuxt-link>
           </li>
         </ul>
       </div>
@@ -73,7 +76,7 @@
         <div class="title">平台动态</div>
         <a-carousel>
           <div class="newsSwiper">
-            <img src="https://www.topamb.com/uploadfiles/pictures/others/20200924154054_7177.jpg" alt="和英阿米巴">
+            <img src="https://www.topamb.com/uploadfiles/pictures/news/20200924152731_4990.jpg" alt="和英阿米巴">
           </div>
           <div class="newsSwiper">
             <img src="https://www.topamb.com/uploadfiles/pictures/others/20200924154054_7177.jpg" alt="和英阿米巴">
@@ -98,11 +101,25 @@
           </a>
         </li>
       </ul>
+      <ul class="logoWall">
+        <li v-for="(item, index) of friendshipList" :key="index">
+          <a :href="item.url">
+            <img :src="item.imgUrl" :alt="item.alt">
+          </a>
+        </li>
+      </ul>
     </div>
     <div class="friendship">
       <div class="severedTitle">友情链接</div>
       <ul class="logoWall">
-        <li v-for="item of 5" :key="item">
+        <li v-for="item of 8" :key="item">
+          <a href="">
+            <img :src="require('../assets/image/company/gl.jpg')" alt="">
+          </a>
+        </li>
+      </ul>
+      <ul class="logoWall">
+        <li v-for="item of 8" :key="item">
           <a href="">
             <img :src="require('../assets/image/company/gl.jpg')" alt="">
           </a>
@@ -217,7 +234,7 @@ export default {
         display: inline-block;
         font-size: 32px;
         color: #909290;
-        border-bottom: 1px solid #909290;
+        border-bottom: 1px solid #f3f4f5;
         margin-bottom: 6px;
       }
       &:hover {
@@ -263,7 +280,7 @@ export default {
       .newThing {
         li {
           padding: 6px 0;
-          border-bottom: 1px dashed #3e3e3e;
+          border-bottom: 1px dashed #999;
           font-size: 12px;
           width: 100%;
           overflow: hidden;
@@ -297,7 +314,7 @@ export default {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      max-width: 1000px;
+      max-width: 1100px;
       margin: 30px auto 0;
       li {
         height: 60px;
