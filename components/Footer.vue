@@ -47,77 +47,112 @@ export default {
       navList: [
         {
           title: "关于我们",
-          url: "/",
-          imgUrl:
-            "https://www.topamb.com/uploadfiles/pictures/product/20180201180909_3220.jpg",
+          url: "/about",
+          imgUrl:"https://www.topamb.com/uploadfiles/pictures/product/20180201180909_3220.jpg",
+          checked: false,
           children: [
             {
-              title: "公司介绍",
-              url: "/"
+              title: "平台介绍",
+              url: "/about#introduce"
             },
             {
-              title: "企业文化",
-              url: "/"
+              title: "平台文化",
+              url: "/about#culture"
             },
             {
-              title: "社会价值",
-              url: "/"
+              title: "平台架构",
+              url: "/about#framework"
+            },
+            {
+              title: "咨询联络",
+              url: "/about#contact"
             }
           ]
         },
         {
           title: "咨询动态",
-          url: "/",
+          url: "/news",
           imgUrl:
             "https://www.topamb.com/uploadfiles/pictures/product/20180201180909_1960.jpg",
+          checked: false,
           children: [
             {
-              title: "公司动态",
-              url: "/"
-            },
-            {
-              title: "和英新闻",
-              url: "/"
+              title: "咨询研究",
+              url: "/news#research"
             },
             {
               title: "行业新闻",
-              url: "/"
+              url: "/news#news"
+            },
+            {
+              title: "平台动态",
+              url: "/news#dynamic"
             }
           ]
+        },
+        {
+          title: "咨询师之家",
+          url: "/",
+          imgUrl:
+            "https://www.topamb.com/uploadfiles/pictures/product/20180201180909_3220.jpg",
+          checked: false,
+          children: [
+            {
+              title: "咨询师",
+              url: "/"
+            },
+            {
+              title: "咨询团队",
+              url: "/"
+            },
+            {
+              title: "咨询公司",
+              url: "/"
+            },
+            {
+              title: "赋能提示",
+              url: "/"
+            },
+          ]
+        },
+        {
+          title: "咨询工具",
+          url: "/",
+          imgUrl:
+            "https://www.topamb.com/uploadfiles/pictures/product/20180201180909_3220.jpg",
+          checked: false,
+          children: []
         },
         {
           title: "产品服务",
           url: "/",
           imgUrl:
             "https://www.topamb.com/uploadfiles/pictures/product/20180201180909_3220.jpg",
+          checked: false,
           children: []
         },
         {
           title: "客户案例",
-          url: "/",
+          url: "/case",
           imgUrl:
             "https://www.topamb.com/uploadfiles/pictures/product/20180201180909_3220.jpg",
+          checked: false,
           children: []
         },
         {
-          title: "咨询师加入",
+          title: "智慧分享",
           url: "/",
           imgUrl:
             "https://www.topamb.com/uploadfiles/pictures/product/20180201180909_3220.jpg",
+          checked: false,
           children: []
         },
         {
-          title: "项目方加入",
+          title: "加入平台",
           url: "/",
           imgUrl:
             "https://www.topamb.com/uploadfiles/pictures/product/20180201180909_3220.jpg",
-          children: []
-        },
-        {
-          title: "联系我们",
-          url: "/",
-          imgUrl:
-            "https://www.topamb.com/uploadfiles/pictures/product/20180201180909_3220.jpg",
+          checked: false,
           children: []
         },
         // {
