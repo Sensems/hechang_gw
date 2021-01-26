@@ -1,7 +1,7 @@
 import request from "./request";
 
 export default {
-    baseUrl: 'hcgw.consultantlikeyzx.com',
+    baseUrl: 'http://hcgw.consultantlikeyzx.com',
     normal: (params) => {
         return request.get("/data/wxapp.ashx", params);
     },

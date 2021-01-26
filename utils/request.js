@@ -2,7 +2,7 @@ import axios from 'axios'
 
 // 设置请求参数
 const timeOut = 1000 * 1000 * 60
-const BaseUrl = "hcgw.consultantlikeyzx.com"
+const BaseUrl = "http://hcgw.consultantlikeyzx.com"
 // 创建实例
 const service = axios.create({
   baseURL: BaseUrl,
@@ -11,7 +11,7 @@ const service = axios.create({
 
 // 添加请求拦截器
 service.interceptors.request.use((config) => {
-  config.headers = {'content-type': 'application/json'}
+  config.headers = {'content-type': 'application/x-www-form-urlencoded'}
   return config
 }), (error) => {
   return Promise.reject(error)
