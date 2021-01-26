@@ -7,16 +7,16 @@
         </a-carousel>
         <a-row type="flex" justify="center" class="caseBox">
             <a-col :xs="22" :sm="22" :md="21" :lg="21" :xl="20">
-                <div class="severedTitle">客户案例</div>
+                <div class="severedTitle">咨询工具</div>
                 <div class="caseList">
-                    <div class="singleCase" v-for="item of caseList" :key="item.id">
+                    <div class="singleCase" v-for="item of instrumentList" :key="item.id">
                         <img src="https://www.topamb.com/uploadfiles/pictures/news/20200807105713_8700.jpg" alt="">
                         <div class="content">
                             <h3>
-                                <nuxt-link :to="'/caseDetail/' + item.Id">{{item.title}}</nuxt-link>
+                                <nuxt-link to="">{{item.title}}</nuxt-link>
                             </h3>
                             <p>{{item.Introduction}}</p> 
-                            <nuxt-link :to="'/caseDetail/' + item.Id" class="detailBtn">查看详情</nuxt-link>
+                            <!-- <nuxt-link :to="'/caseDetail/' + item.Id" class="detailBtn">查看详情</nuxt-link> -->
                         </div>
                     </div>
                 </div>
@@ -29,19 +29,19 @@
 import Service from '@/utils/api';
     export default {
         async asyncData ({ params }) {
-            const mycase =  await Service.normal({op: 14});
+            const instrument =  await Service.normal({op: 16});
             return {
-                caseList: mycase.lists
+                instrumentList: instrument.lists
             }
         },
         head() {
             return {
-                    title: '和畅-客户案例',
+                    title: '和畅-咨询工具',
                     meta: [
                     {
-                        hid: '和畅-客户案例',
-                        name: '和畅-客户案例',
-                        content: '和畅-客户案例'
+                        hid: '和畅-咨询工具',
+                        name: '和畅-咨询工具',
+                        content: '和畅-咨询工具'
                     }
                 ]   
             }
@@ -59,7 +59,6 @@ import Service from '@/utils/api';
             flex-wrap: wrap;
             margin-top: 30px;
             justify-content: center;
-            min-width: 1200px;
             .singleCase {
                 width: 400px;
                 height: 470px;

@@ -22,7 +22,7 @@
     <div class="archivalInfo">
       <div class="left">
         <p>
-          版权所有©2018 贵阳货车帮科技有限公司
+          版权所有©2018 和畅网络科技有限公司
           <a href="https://www.baidu.com">黔ICP备16000322号</a>
           <a href="https://www.baidu.com">
             <img
@@ -178,7 +178,7 @@ export default {
 .content {
   display: flex;
   justify-content: space-between;
-  padding: 30px 170px;
+  padding: 30px 10%;
   background: #4a4b57;
   .menuList {
     display: flex;
@@ -217,7 +217,7 @@ export default {
       margin: 0;
     }
   }
-  @media screen and (max-width: 414px) {
+  /* @media screen and (max-width: 414px) {
     padding: 0;
     flex-direction: column;
     justify-content: center;
@@ -225,7 +225,6 @@ export default {
     box-sizing: border-box;
     flex-wrap: wrap;
     .menuList {
-      /* justify-content: center; */
       text-align: center;
       flex-wrap: wrap;
       .singleMenu {
@@ -233,7 +232,7 @@ export default {
         margin-right: 0 !important;
       }
     }
-  }
+  } */
 }
 .archivalInfo {
   display: flex;

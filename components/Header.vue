@@ -6,67 +6,58 @@
         alt=""
       />
     </div>
-    <!-- <a-affix :offset-top="0"> -->
-      <nav>
-        <ul class="menu">
-          <li
-            v-for="(item, index) of navList"
-            :key="index"
-            class="singleMenu"
-            :class="item.checked ? 'active' : ''"
-            @mouseenter="menuEnter(index, $event)"
-            @click="menuClike(index)"
-          >
-            <nuxt-link :to="item.url">
-              {{ item.title }}
-            </nuxt-link>
-          </li>
-        </ul>
-      </nav>
-      <!-- <nav class="menu_phone">
-        <ul class="menu">
-          <li
-            v-for="(item, index) of navList"
-            :key="index"
-            class="singleMenu"
-            :class="item.checked ? 'active' : ''"
-            @click="menuClike(index)"
-          >
-            <nuxt-link :to="item.url">
-              {{ item.title }}
-            </nuxt-link>
-            <ul class="childMenu">
-              <li v-for="(_item, _index) of item.children" :key="_index">
-                <nuxt-link :to="_item.url">
-                  {{ _item.title }}
-                </nuxt-link>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </nav> -->
-    <!-- </a-affix> -->
-    <div
-      class="floatChildMenu"
-      :style="{
-        left: floatMenuLeft + 'px',
-        top: (floatMenuTop + 55) + 'px',
-        height: showFloatMenu ? '216px' : 0,
-      }"
-      @mouseleave="menuOut"
-    >
-      <div class="insideBox" style="margin: 8px 8px 8px 0">
-        <ul class="childMenu">
-        <li v-for="(item, index) of childMenu.menuList" @click="menuClike(childMenu.parentsIndex)" :key="index" >
+    <nav>
+      <ul class="menu">
+        <li
+          v-for="(item, index) of navList"
+          :key="index"
+          class="singleMenu"
+          :class="item.checked ? 'active' : ''"
+          @mouseenter="menuEnter(index, $event)"
+          @mouseout="floatImgOut"
+          @click="menuClike(index)"
+        >
           <nuxt-link :to="item.url">
             {{ item.title }}
           </nuxt-link>
         </li>
       </ul>
-      <div>
-        <img :src="childMenu.imgUrl" alt="" />
+    </nav>
+    <div
+      class="floatChildMenu"
+      :style="{
+        left: floatMenuLeft + 'px',
+        top: floatMenuTop + 55 - scrollTop + 'px',
+        height: showFloatMenu ? '216px' : 0
+      }"
+      @mouseleave="menuOut"
+    >
+      <div class="insideBox" style="margin: 8px 8px 8px 0">
+        <ul class="childMenu">
+          <li
+            v-for="(item, index) of childMenu.menuList"
+            @click="menuClike(childMenu.parentsIndex)"
+            :key="index"
+          >
+            <nuxt-link :to="item.url">
+              {{ item.title }}
+            </nuxt-link>
+          </li>
+        </ul>
+        <div>
+          <img :src="childMenu.imgUrl" alt="" />
+        </div>
       </div>
-      </div>
+    </div>
+    <div
+      class="floatImg"
+      :style="{
+        left: floatMenuLeft + 'px',
+        top: floatMenuTop + 55 - scrollTop + 'px',
+        height: showFloatImg ? '170px' : 0
+      }"
+    >
+      <img :src="require('../assets/image/miniQr.jpg')" alt="" />
     </div>
   </header>
 </template>
@@ -76,19 +67,23 @@ export default {
   data() {
     return {
       showFloatMenu: false,
+      showFloatImg: false,
       floatMenuLeft: 0,
       floatMenuTop: 0,
+      scrollTop: 0,
+      navList: [],
       navList: [
         {
           title: "首页",
           url: "/",
           children: [],
-          checked: true,
+          checked: true
         },
         {
           title: "关于我们",
           url: "/about",
-          imgUrl:"https://www.topamb.com/uploadfiles/pictures/product/20180201180909_3220.jpg",
+          imgUrl:
+            "https://www.topamb.com/uploadfiles/pictures/product/20180201180909_3220.jpg",
           checked: false,
           children: [
             {
@@ -132,32 +127,32 @@ export default {
         },
         {
           title: "咨询师之家",
-          url: "/",
+          url: "/counselor",
           imgUrl:
             "https://www.topamb.com/uploadfiles/pictures/product/20180201180909_3220.jpg",
           checked: false,
           children: [
             {
               title: "咨询师",
-              url: "/"
+              url: "/counselor#counselor"
             },
             {
               title: "咨询团队",
-              url: "/"
+              url: "/counselor#team"
             },
             {
               title: "咨询公司",
-              url: "/"
+              url: "/counselor#company"
             },
             {
-              title: "赋能提示",
-              url: "/"
-            },
+              title: "赋能提升",
+              url: "/counselor#promote"
+            }
           ]
         },
         {
           title: "咨询工具",
-          url: "/",
+          url: "/instrument",
           imgUrl:
             "https://www.topamb.com/uploadfiles/pictures/product/20180201180909_3220.jpg",
           checked: false,
@@ -165,7 +160,7 @@ export default {
         },
         {
           title: "产品服务",
-          url: "/",
+          url: "/product",
           imgUrl:
             "https://www.topamb.com/uploadfiles/pictures/product/20180201180909_3220.jpg",
           checked: false,
@@ -181,7 +176,7 @@ export default {
         },
         {
           title: "智慧分享",
-          url: "/",
+          url: "/wisdomShare",
           imgUrl:
             "https://www.topamb.com/uploadfiles/pictures/product/20180201180909_3220.jpg",
           checked: false,
@@ -189,12 +184,12 @@ export default {
         },
         {
           title: "加入平台",
-          url: "/",
+          url: "",
           imgUrl:
             "https://www.topamb.com/uploadfiles/pictures/product/20180201180909_3220.jpg",
           checked: false,
           children: []
-        },
+        }
         // {
         //   title: "联系我们",
         //   url: "/contact",
@@ -208,11 +203,23 @@ export default {
         parentsIndex: 0,
         menuList: [],
         imgUrl: ""
-      },
+      }
+    };
+  },
+  mounted() {
+    window.onscroll = () => {
+      var Top = document.documentElement.scrollTop || document.body.scrollTop;
+      this.scrollTop = Top;
     };
   },
   methods: {
     menuEnter(index, e) {
+      if (e.target.innerText === "加入平台") {
+        this.showFloatImg = true;
+        this.floatMenuLeft = e.target.offsetLeft;
+        this.floatMenuTop = e.target.offsetTop;
+      }
+
       if (this.navList[index].children.length > 0) {
         this.childMenu.parentsIndex = index;
         this.childMenu.menuList = this.navList[index].children;
@@ -224,16 +231,20 @@ export default {
         this.showFloatMenu = false;
       }
     },
-    menuOut () {
+    menuOut() {
       this.showFloatMenu = false;
+      this.showFloatImg = false;
     },
-    menuClike (i) {
+    floatImgOut() {
+      this.showFloatImg = false;
+    },
+    menuClike(i) {
       this.navList.forEach((item, index) => {
         item.checked = false;
-        if(index === i) {
+        if (index === i) {
           item.checked = true;
         }
-      })
+      });
       this.showFloatMenu = false;
     }
   }
@@ -245,7 +256,7 @@ export default {
 .content {
   /* height: 80px; */
   background: $main-color;
-  padding: 10px 250px;
+  padding: 10px 13%;
   > img {
     height: 80px;
     /* margin-top: 10px; */
@@ -261,7 +272,7 @@ export default {
     line-height: 55px;
     height: 55px;
     text-align: center;
-    margin-right:4px;
+    margin-right: 4px;
     a {
       display: inline-block;
       color: #4c4c4c;
@@ -325,6 +336,23 @@ export default {
   }
 }
 .menu_phone {
-
+}
+.floatImg {
+  position: fixed;
+  top: 135px;
+  height: 170px;
+  width: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  transition: height 0.1s;
+  overflow: hidden;
+  z-index: 999;
+  box-shadow: 0 0 16px #626369;
+  img {
+    width: 150px;
+    height: 150px;
+  }
 }
 </style>

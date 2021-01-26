@@ -1,17 +1,8 @@
 <template>
   <div class="index">
     <a-carousel autoplay effect="fade">
-      <div class="swiperImg">
-        <img src="../assets/image/bg1.png" alt="和英阿米巴">
-      </div>
-      <div class="swiperImg">
-        <img src="../assets/image/bg2.png" alt="和英阿米巴">
-      </div>
-      <div class="swiperImg">
-        <img src="../assets/image/bg3.png" alt="和英阿米巴">
-      </div>
-      <div class="swiperImg">
-        <img src="https://www.topamb.com/uploadfiles/pictures/others/20200924154054_7177.jpg" alt="和英阿米巴">
+      <div class="swiperImg" v-for="(item, index) of slideshowList" :key="index">
+        <img :src="baseUrl + item.Img" alt="和英阿米巴">
       </div>
     </a-carousel>
 
@@ -25,7 +16,7 @@
             <span class="iconfont icon" v-if="index === 4">&#xe601;</span>
           </div>
           <div>
-            <span class="num">{{item.num}}</span>
+            <span class="num">{{item.count}}+</span>
           </div>
           <div>
             <span class="title">{{item.title}}</span>
@@ -35,59 +26,41 @@
 
     <div class="newsBox">
       <div class="news">
-        <div class="title">咨询研究</div>
+        <div class="title">{{newsList[0].Title}}</div>
         <a-carousel>
-          <div class="newsSwiper">
-            <img src="https://www.topamb.com/uploadfiles/pictures/others/20200924154054_7177.jpg" alt="和英阿米巴">
-          </div>
-          <div class="newsSwiper">
-            <img src="https://www.topamb.com/uploadfiles/pictures/others/20200924154054_7177.jpg" alt="和英阿米巴">
+          <div class="newsSwiper" v-for="(item, index) of newsList[0].Img" :key="index">
+            <img :src="baseUrl + item.img" :alt="item.title">
           </div>
         </a-carousel>
         <ul class="newThing">
-          <li>
-            <nuxt-link to="/">公司动态公司动态公司动态公司动态公司动态公司动态公司动态公司动态公司动态</nuxt-link>
-          </li>
-          <li>
-            <nuxt-link to="/to">公司动态公司动态公司动态公司动态公司动态</nuxt-link>
+          <li v-for="(item, index) of newsList[0].lists" :key="index">
+            <nuxt-link :to="'/newsDetail/' + item.Id">{{item.title}}</nuxt-link>
           </li>
         </ul>
       </div>
       <div class="news">
-        <div class="title">行业新闻</div>
+        <div class="title">{{newsList[1].Title}}</div>
         <a-carousel>
-          <div class="newsSwiper">
-            <img src="https://www.topamb.com/uploadfiles/pictures/news/20201216111859_0900.jpg" alt="和英阿米巴">
-          </div>
-          <div class="newsSwiper">
-            <img src="https://www.topamb.com/uploadfiles/pictures/others/20200924154054_7177.jpg" alt="和英阿米巴">
+          <div class="newsSwiper" v-for="(item, index) of newsList[1].Img" :key="index">
+            <img :src="baseUrl + item.img" :alt="item.title">
           </div>
         </a-carousel>
         <ul class="newThing">
-          <li>
-            <nuxt-link to="/">公司动态公司动态公司动态公司动态公司动态公司动态公司动态公司动态公司动态</nuxt-link>
-          </li>
-          <li>
-            <nuxt-link to="/aa">公司动态公司动态公司动态公司动态公司动态</nuxt-link>
+          <li v-for="(item, index) of newsList[1].lists" :key="index">
+            <nuxt-link :to="'/newsDetail/' + item.Id">{{item.title}}</nuxt-link>
           </li>
         </ul>
       </div>
       <div class="news">
-        <div class="title">平台动态</div>
+        <div class="title">{{newsList[2].Title}}</div>
         <a-carousel>
-          <div class="newsSwiper">
-            <img src="https://www.topamb.com/uploadfiles/pictures/news/20200924152731_4990.jpg" alt="和英阿米巴">
-          </div>
-          <div class="newsSwiper">
-            <img src="https://www.topamb.com/uploadfiles/pictures/others/20200924154054_7177.jpg" alt="和英阿米巴">
+          <div class="newsSwiper" v-for="(item, index) of newsList[2].Img" :key="index">
+            <img :src="baseUrl + item.img" :alt="item.title">
           </div>
         </a-carousel>
         <ul class="newThing">
-          <li>
-            <nuxt-link to="/">公司动态公司动态公司动态公司动态公司动态公司动态公司动态公司动态公司动态</nuxt-link>
-          </li>
-          <li>
-            <nuxt-link to="/to">公司动态公司动态公司动态公司动态公司动态</nuxt-link>
+          <li v-for="(item, index) of newsList[2].lists" :key="index">
+            <nuxt-link :to="'/newsDetail/' + item.Id">{{item.title}}</nuxt-link>
           </li>
         </ul>
       </div>
@@ -130,31 +103,35 @@
 </template>
 
 <script>
+import Service from '@/utils/api'
 export default {
+  scrollToTop: true,
+  async asyncData ({ params }) {
+    const numData =  await Service.homeNumData({op: 1});
+    const slideshow =  await Service.homeSlideshow({op: 3});
+    const news =  await Service.homeNews({op: 4});
+    
+    return {
+      dataBoardList: numData.lists,
+      slideshowList: slideshow.lists,
+      newsList: news.lists,
+    }
+  },
+  head() {
+    return {
+      title: '和畅-官网首页',
+      meta: [
+        {
+          hid: '和畅-官网首页',
+          name: '和畅-官网首页',
+          content: '和畅-官网首页'
+        }
+      ]
+    }
+  },
   data () {
     return {
-      dataBoardList: [
-        {
-          title: '咨询顾问',
-          num: '1000+',
-        },
-        {
-          title: '咨询公司',
-          num: '200+',
-        },
-        {
-          title: '会员企业',
-          num: '5000+',
-        },
-        {
-          title: '项目信息',
-          num: '500+',
-        },
-        {
-          title: '项目案例',
-          num: '2000+',
-        },
-      ],
+      baseUrl: Service.baseUrl,
       friendshipList: [
         {
           alt: '妙可蓝多',
@@ -214,7 +191,7 @@ export default {
     flex-wrap: wrap;
     .singleData {
       text-align: center;
-      width: 250px;
+      width: 240px;
       .iconWrap {
         display: inline-block;
         width: 134px;
@@ -273,7 +250,7 @@ export default {
         width: 370px;
         height: 240px;
         img {
-          width: 100%;
+          /* width: 100%; */
           height: 100%;
         }
       }
@@ -303,7 +280,7 @@ export default {
       flex-wrap: wrap;
       justify-content: center;
       .news {
-        margin-right: 0;
+        margin-right: 20px;
       }
     }
   }

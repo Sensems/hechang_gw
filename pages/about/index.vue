@@ -10,11 +10,10 @@
                 <a-col :xs="22" :sm="22" :md="20" :lg="18" :xl="16">
                     <div class="introduceBox">
                         <div class="titlebox">
-                            <h1>平台介绍</h1>
-                            <h3>Company Introduction</h3>
+                            <h1>{{aboutList[0].ChineseName}}</h1>
+                            <h3>{{aboutList[0].EnglishName}}</h3>
                         </div>
-                        <img src="http://static.56qq.com/hcb/1606218850819/images/about/company.jpg" alt="">
-                        <div class="content">公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍</div>
+                        <div class="richBox" v-html="aboutList[0].editor"></div>
                     </div>
                 </a-col>
             </a-row>
@@ -24,11 +23,10 @@
                 <a-col :xs="22" :sm="22" :md="20" :lg="18" :xl="16">
                     <div class="introduceBox">
                         <div class="titlebox">
-                            <h1>平台文化</h1>
-                            <h3>Company Introduction</h3>
+                            <h1>{{aboutList[1].ChineseName}}</h1>
+                            <h3>{{aboutList[1].EnglishName}}</h3>
                         </div>
-                        <img src="http://static.56qq.com/hcb/1606218850819/images/about/company.jpg" alt="">
-                        <div class="content">公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍</div>
+                        <div class="richBox" v-html="aboutList[1].editor"></div>
                     </div>
                 </a-col>
             </a-row>
@@ -38,11 +36,10 @@
                 <a-col :xs="22" :sm="22" :md="20" :lg="18" :xl="16">
                     <div class="introduceBox">
                         <div class="titlebox">
-                            <h1>平台架构</h1>
-                            <h3>Company Introduction</h3>
+                            <h1>{{aboutList[2].ChineseName}}</h1>
+                            <h3>{{aboutList[2].EnglishName}}</h3>
                         </div>
-                        <img src="http://static.56qq.com/hcb/1606218850819/images/about/company.jpg" alt="">
-                        <div class="content">公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍</div>
+                        <div class="richBox" v-html="aboutList[2].editor"></div>
                     </div>
                 </a-col>
             </a-row>
@@ -52,11 +49,10 @@
                 <a-col :xs="22" :sm="22" :md="20" :lg="18" :xl="16">
                     <div class="introduceBox">
                         <div class="titlebox">
-                            <h1>咨询联络</h1>
-                            <h3>Company Introduction</h3>
+                            <h1>{{aboutList[3].ChineseName}}</h1>
+                            <h3>{{aboutList[3].EnglishName}}</h3>
                         </div>
-                        <img src="http://static.56qq.com/hcb/1606218850819/images/about/company.jpg" alt="">
-                        <div class="content">公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍</div>
+                        <div class="richBox" v-html="aboutList[3].editor"></div>
                     </div>
                 </a-col>
             </a-row>
@@ -65,7 +61,26 @@
 </template>
 
 <script>
+    import Service from '@/utils/api';
     export default {
+        async asyncData ({ params }) {
+            const about =  await Service.aboutUs({op: 2});
+            return {
+                aboutList: about.lists
+            }
+        },
+        head() {
+            return {
+                    title: '和畅-关于我们',
+                    meta: [
+                    {
+                        hid: '和畅-关于我们',
+                        name: '和畅-关于我们',
+                        content: '和畅-关于我们'
+                    }
+                ]   
+            }
+        },
         data () {
             return {}
         },
@@ -97,6 +112,7 @@
         }
     }
     .introduceBox {
+        width: 1200px;
         .titlebox {
             position: relative;
             padding-left: 10px;
@@ -124,6 +140,11 @@
             width: 100%;
             margin-bottom: 10px;
         }
+    }
+}
+.richBox {
+    img {
+        width: 100% !important;
     }
 }
 </style>
