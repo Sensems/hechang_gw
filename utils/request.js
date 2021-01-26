@@ -2,7 +2,7 @@ import axios from 'axios'
 
 // 设置请求参数
 const timeOut = 1000 * 1000 * 60
-const BaseUrl = "http://172.16.0.240:8056"
+const BaseUrl = "hcgw.consultantlikeyzx.com"
 // 创建实例
 const service = axios.create({
   baseURL: BaseUrl,
