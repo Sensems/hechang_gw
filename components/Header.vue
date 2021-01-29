@@ -71,7 +71,6 @@ export default {
       floatMenuLeft: 0,
       floatMenuTop: 0,
       scrollTop: 0,
-      navList: [],
       navList: [
         {
           title: "首页",

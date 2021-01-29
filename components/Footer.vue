@@ -48,7 +48,8 @@ export default {
         {
           title: "关于我们",
           url: "/about",
-          imgUrl:"https://www.topamb.com/uploadfiles/pictures/product/20180201180909_3220.jpg",
+          imgUrl:
+            "https://www.topamb.com/uploadfiles/pictures/product/20180201180909_3220.jpg",
           checked: false,
           children: [
             {
@@ -92,32 +93,32 @@ export default {
         },
         {
           title: "咨询师之家",
-          url: "/",
+          url: "/counselor",
           imgUrl:
             "https://www.topamb.com/uploadfiles/pictures/product/20180201180909_3220.jpg",
           checked: false,
           children: [
             {
               title: "咨询师",
-              url: "/"
+              url: "/counselor#counselor"
             },
             {
               title: "咨询团队",
-              url: "/"
+              url: "/counselor#team"
             },
             {
               title: "咨询公司",
-              url: "/"
+              url: "/counselor#company"
             },
             {
-              title: "赋能提示",
-              url: "/"
-            },
+              title: "赋能提升",
+              url: "/counselor#promote"
+            }
           ]
         },
         {
           title: "咨询工具",
-          url: "/",
+          url: "/instrument",
           imgUrl:
             "https://www.topamb.com/uploadfiles/pictures/product/20180201180909_3220.jpg",
           checked: false,
@@ -125,7 +126,7 @@ export default {
         },
         {
           title: "产品服务",
-          url: "/",
+          url: "/product",
           imgUrl:
             "https://www.topamb.com/uploadfiles/pictures/product/20180201180909_3220.jpg",
           checked: false,
@@ -141,7 +142,7 @@ export default {
         },
         {
           title: "智慧分享",
-          url: "/",
+          url: "/wisdomShare",
           imgUrl:
             "https://www.topamb.com/uploadfiles/pictures/product/20180201180909_3220.jpg",
           checked: false,
@@ -149,25 +150,21 @@ export default {
         },
         {
           title: "加入平台",
-          url: "/",
+          url: "",
           imgUrl:
             "https://www.topamb.com/uploadfiles/pictures/product/20180201180909_3220.jpg",
           checked: false,
           children: []
-        },
+        }
         // {
-        //   title: "友情链接",
-        //   url: "",
+        //   title: "联系我们",
+        //   url: "/contact",
         //   imgUrl:
         //     "https://www.topamb.com/uploadfiles/pictures/product/20180201180909_3220.jpg",
-        //   children: [
-        //     {
-        //       title: '和英咨询',
-        //       url: "https://www.topamb.com/",
-        //     }
-        //   ]
+        //   checked: false,
+        //   children: []
         // }
-      ]
+      ],
     };
   }
 };

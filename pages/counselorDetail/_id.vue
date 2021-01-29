@@ -1,30 +1,23 @@
 <template>
   <div class="counselorDetail">
     <a-carousel autoplay>
-      <div class="swiperImg">
-        <img
-          src="https://www.topamb.com/uploadfiles/pictures/others/20200114141452_4579.jpg"
-          alt="和英阿米巴"
-        />
+      <div class="swiperImg" v-for="(item, index) of carouselList" :key="index">
+        <img :src="baseUrl + item.Img" alt="和英阿米巴" />
       </div>
     </a-carousel>
 
     <div class="counselorInfo">
       <div class="imgWrap">
         <img
-          src="https://www.topamb.com/uploadfiles/pictures/help/20180919095801_3323.jpg"
+          :src="baseUrl + info.headImg"
           alt=""
         />
       </div>
       <div class="info">
-        <p class="name">朱先春</p>
-        <p class="mianTitle">易咨询首席咨询项目总监</p>
+        <p class="name">{{info.userName}}</p>
+        <p class="mianTitle">{{info.jibie}}</p>
         <ul>
-          <li class="otherTitle">十五年以上管理咨询经验</li>
-          <li class="otherTitle">企业组织效能提升资深顾问</li>
-          <li class="otherTitle">十五年以上企业中高层管理阅历</li>
-          <li class="otherTitle">中山大学管理与IT咨询中心研究员</li>
-          <li class="otherTitle">河海大学企业管理学院特聘教授</li>
+          <li class="otherTitle" v-for="(item, index) of info.management" :key="index">{{item.management}}</li>
         </ul>
       </div>
     </div>
@@ -34,7 +27,7 @@
         <div class="left"></div>
         <div class="right">
           <img
-            src="https://www.topamb.com/skins/default/img/ny/teamceoxc03.jpg"
+            :src="baseUrl + info.Img"
             alt=""
           />
         </div>
@@ -44,7 +37,7 @@
             擅长领域
           </h1>
           <p class="text">
-            企业综合诊断、企业战略管理、集团管控与组织设计、高层机制设计、企业决策效能提升、企业运营效能提升、企业人本效能提升、组织和谐管理、心理资本开发、薪酬与绩效体系、培训与人才发展体系、阿米巴经营模式等。
+            {{info.IsgoodAt}}
           </p>
         </div>
       </div>
@@ -53,21 +46,21 @@
     <div class="case">
       <h1>部分服务客户</h1>
       <p>
-        广东移动、深圳移动、中山移动万和集团、广东科高、佛山伟仕达广特电气、广州日立电梯、南方电网惠利电子、珠海精路电子、生活家地板、益高卫浴、千芝雅卫生用品、华强本邦照明、沈阳桃李面包、禄丰天宝、中盐常化、新伟星塑料、洛阳钼业、奥扬新能源、阿里巴巴、（科大讯飞）讯飞樽鸿、银仕来纺织、张家港一商场集团、江阴兴澄特钢、精艺股份等。
+        {{info.IsgoodAt}}
       </p>
     </div>
     <div class="cooperation">
-      <ul class="logoWall">
+      <!-- <ul class="logoWall">
         <li v-for="(item, index) of friendshipList" :key="index">
           <a :href="item.url">
             <img :src="item.imgUrl" :alt="item.alt" />
           </a>
         </li>
-      </ul>
+      </ul> -->
       <ul class="logoWall">
-        <li v-for="(item, index) of friendshipList" :key="index">
-          <a :href="item.url">
-            <img :src="item.imgUrl" :alt="item.alt" />
+        <li v-for="(item, index) of partnerList" :key="index">
+          <a :href="item.wangzhi">
+            <img :src="baseUrl + item.img" :alt="item.title">
           </a>
         </li>
       </ul>
@@ -76,12 +69,24 @@
 </template>
 
 <script>
+import Service from "@/utils/api";
 export default {
   validate({ params }) {
     return /^\d+$/.test(params.id);
   },
+  async asyncData({ params }) {
+    const carousel = await Service.normal({ op: 20 });
+    const counselorInfo = await Service.normal({ op: 27, Id: params.id });
+    const partner =  await Service.normal({op: 25});
+    return {
+      info: counselorInfo,
+      carouselList: carousel.lists,
+      partnerList: partner.lists,
+    };
+  },
   data() {
     return {
+      baseUrl: Service.baseUrl,
       friendshipList: [
         {
           alt: "妙可蓝多",

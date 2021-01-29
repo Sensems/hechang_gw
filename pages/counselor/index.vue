@@ -1,11 +1,8 @@
 <template>
   <div class="counselor">
     <a-carousel autoplay>
-      <div class="swiperImg">
-        <img
-          src="https://www.topamb.com/uploadfiles/pictures/others/20190114103041_3056.jpg"
-          alt="和英阿米巴"
-        />
+      <div class="swiperImg" v-for="(item, index) of carouselList" :key="index">
+        <img :src="baseUrl + item.Img" alt="和英阿米巴" />
       </div>
     </a-carousel>
 
@@ -24,13 +21,10 @@
                 :key="item.Id"
               >
                 <nuxt-link :to="'/counselorDetail/' + item.Id">
-                  <img
-                    :src="baseUrl + item.img"
-                    alt=""
-                  />
+                  <img :src="baseUrl + item.img" alt="" />
                   <div class="info">
-                    <p class="name">{{item.userName}}</p>
-                    <p class="title">{{item.level}}</p>
+                    <p class="name">{{ item.userName }}</p>
+                    <p class="title">{{ item.level }}</p>
                   </div>
                 </nuxt-link>
               </div>
@@ -55,28 +49,22 @@
                   :key="item.Id"
                   v-if="item % 2 !== 0"
                 >
-                  <img
-                    :src="baseUrl + item.img"
-                    alt=""
-                  />
+                  <img :src="baseUrl + item.img" alt="" />
                   <div class="info">
-                    <h1>{{item.userName}}</h1>
+                    <h1>{{ item.userName }}</h1>
                     <p>
-                     {{item.Introduction}}
+                      {{ item.Introduction }}
                     </p>
                   </div>
                 </div>
                 <div class="singleConsult imgRight" :key="item.Id" v-else>
                   <div class="info">
-                    <h1>{{item.userName}}</h1>
+                    <h1>{{ item.userName }}</h1>
                     <p>
-                     {{item.Introduction}}
+                      {{ item.Introduction }}
                     </p>
                   </div>
-                  <img
-                    :src="baseUrl + item.img"
-                    alt=""
-                  />
+                  <img :src="baseUrl + item.img" alt="" />
                 </div>
               </template>
             </div>
@@ -100,28 +88,22 @@
                   :key="item.Id"
                   v-if="item % 2 !== 0"
                 >
-                  <img
-                    :src="baseUrl + item.img"
-                    alt=""
-                  />
+                  <img :src="baseUrl + item.img" alt="" />
                   <div class="info">
-                    <h1>{{item.userName}}</h1>
+                    <h1>{{ item.userName }}</h1>
                     <p>
-                     {{item.Introduction}}
+                      {{ item.Introduction }}
                     </p>
                   </div>
                 </div>
                 <div class="singleConsult imgRight" :key="item.Id" v-else>
                   <div class="info">
-                    <h1>{{item.userName}}</h1>
+                    <h1>{{ item.userName }}</h1>
                     <p>
-                     {{item.Introduction}}
+                      {{ item.Introduction }}
                     </p>
                   </div>
-                  <img
-                    :src="baseUrl + item.img"
-                    alt=""
-                  />
+                  <img :src="baseUrl + item.img" alt="" />
                 </div>
               </template>
             </div>
@@ -145,28 +127,22 @@
                   :key="item.Id"
                   v-if="item % 2 !== 0"
                 >
-                  <img
-                    :src="baseUrl + item.img"
-                    alt=""
-                  />
+                  <img :src="baseUrl + item.img" alt="" />
                   <div class="info">
-                    <h1>{{item.userName}}</h1>
+                    <h1>{{ item.userName }}</h1>
                     <p>
-                     {{item.Introduction}}
+                      {{ item.Introduction }}
                     </p>
                   </div>
                 </div>
                 <div class="singleConsult imgRight" :key="item.Id" v-else>
                   <div class="info">
-                    <h1>{{item.userName}}</h1>
+                    <h1>{{ item.userName }}</h1>
                     <p>
-                     {{item.Introduction}}
+                      {{ item.Introduction }}
                     </p>
                   </div>
-                  <img
-                    :src="baseUrl + item.img"
-                    alt=""
-                  />
+                  <img :src="baseUrl + item.img" alt="" />
                 </div>
               </template>
             </div>
@@ -181,16 +157,18 @@
 import Service from "@/utils/api";
 export default {
   async asyncData({ params }) {
-    const consultan = await Service.consultant({ op: 10, page: 1, count: 99 });
-    const team = await Service.consultant({ op: 11, page: 1, count: 99 });
-    const company = await Service.consultant({ op: 12, page: 1, count: 99 });
-    const promote = await Service.consultant({ op: 13, page: 1, count: 99 });
+    const consultan = await Service.normal({ op: 10, page: 1, count: 99 });
+    const team = await Service.normal({ op: 11, page: 1, count: 99 });
+    const company = await Service.normal({ op: 12, page: 1, count: 99 });
+    const promote = await Service.normal({ op: 13, page: 1, count: 99 });
+    const carousel = await Service.normal({ op: 20 });
 
     return {
       consultantList: consultan.lists,
       teamList: team.lists,
       companyList: company.lists,
       promoteList: promote.lists,
+      carouselList: carousel.lists
     };
   },
   head() {
@@ -210,9 +188,9 @@ export default {
       baseUrl: Service.baseUrl
     };
   },
-  mounted(){
+  mounted() {
     if (window.location.hash) {
-        this.goAnchor(window.location.hash)
+      this.goAnchor(window.location.hash);
     }
   },
   methods: {
@@ -222,10 +200,10 @@ export default {
     goAnchor(selector) {
       // 最好加个定时器给页面缓冲时间
       setTimeout(() => {
-          // 获取锚点元素
-          let anchor = this.$el.querySelector(selector)
-          anchor.scrollIntoView(true)
-      }, 100)
+        // 获取锚点元素
+        let anchor = this.$el.querySelector(selector);
+        anchor.scrollIntoView(true);
+      }, 100);
     }
   }
 };

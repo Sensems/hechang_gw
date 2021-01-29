@@ -43,7 +43,7 @@ export default {
     return /^\d+$/.test(params.id);
   },
   async asyncData({ params }) {
-    const newsDetail = await Service.newsDetail({ op: 9, Id: params.id });
+    const newsDetail = await Service.normal({ op: 9, Id: params.id });
     return {
       info: newsDetail
     };

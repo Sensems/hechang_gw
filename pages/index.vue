@@ -68,36 +68,36 @@
     <div class="cooperation">
       <div class="severedTitle">合作伙伴</div>
       <ul class="logoWall">
+        <li v-for="(item, index) of partnerList" :key="index">
+          <a :href="item.wangzhi">
+            <img :src="baseUrl + item.img" :alt="item.title">
+          </a>
+        </li>
+      </ul>
+      <!-- <ul class="logoWall">
         <li v-for="(item, index) of friendshipList" :key="index">
           <a :href="item.url">
             <img :src="item.imgUrl" :alt="item.alt">
           </a>
         </li>
-      </ul>
-      <ul class="logoWall">
-        <li v-for="(item, index) of friendshipList" :key="index">
-          <a :href="item.url">
-            <img :src="item.imgUrl" :alt="item.alt">
-          </a>
-        </li>
-      </ul>
+      </ul> -->
     </div>
     <div class="friendship">
       <div class="severedTitle">友情链接</div>
       <ul class="logoWall">
+        <li v-for="(item, index) of linksList" :key="index">
+          <a :href="item.wangzhi">
+            <img :src="baseUrl + item.img" :alt="item.title">
+          </a>
+        </li>
+      </ul>
+      <!-- <ul class="logoWall">
         <li v-for="item of 8" :key="item">
           <a href="">
             <img :src="require('../assets/image/company/gl.jpg')" alt="">
           </a>
         </li>
-      </ul>
-      <ul class="logoWall">
-        <li v-for="item of 8" :key="item">
-          <a href="">
-            <img :src="require('../assets/image/company/gl.jpg')" alt="">
-          </a>
-        </li>
-      </ul>
+      </ul> -->
     </div>
   </div>
 </template>
@@ -107,14 +107,18 @@ import Service from '@/utils/api'
 export default {
   scrollToTop: true,
   async asyncData ({ params }) {
-    const numData =  await Service.homeNumData({op: 1});
-    const slideshow =  await Service.homeSlideshow({op: 3});
-    const news =  await Service.homeNews({op: 4});
+    const numData =  await Service.normal({op: 1});
+    const slideshow =  await Service.normal({op: 3});
+    const news =  await Service.normal({op: 4});
+    const partner =  await Service.normal({op: 25});
+    const links =  await Service.normal({op: 26});
     
     return {
       dataBoardList: numData.lists,
       slideshowList: slideshow.lists,
       newsList: news.lists,
+      partnerList: partner.lists,
+      linksList: links.lists,
     }
   },
   head() {

@@ -2,7 +2,8 @@ import axios from 'axios'
 
 // 设置请求参数
 const timeOut = 1000 * 1000 * 60
-const BaseUrl = "http://hcgw.consultantlikeyzx.com"
+// const BaseUrl = "http://hcgw.consultantlikeyzx.com"
+const BaseUrl = "http://172.16.0.240:8056"
 // 创建实例
 const service = axios.create({
   baseURL: BaseUrl,
@@ -26,6 +27,7 @@ service.interceptors.response.use((response) => {
 
 //添加request 类
 class request {
+
   // get 请求
   static get(url, params) {
     let config = {

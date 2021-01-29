@@ -27,15 +27,13 @@
       </a-col>
       <a-col class="recommend" :xs="7" :sm="7" :md="7" :lg="6" :xl="6">
         <h3 class="title">推荐文章</h3>
-        <div class="singleRecommend" v-for="item of 5" :key="item">
+        <div class="singleRecommend" v-for="item of recommendList" :key="item.Id">
           <img
-            src="https://www.topamb.com/uploadfiles/pictures/news/20201216142109_2001.jpg"
+            :src="baseUrl + item.img"
             alt=""
           />
           <p>
-            <nuxt-link to="/news/newsDetail"
-              >中盐常州化工 : 聚焦高质量，打造优秀化工企业+幸福常化</nuxt-link
-            >
+            <nuxt-link :to="'/caseDetail/' + item.Id">{{item.title}}</nuxt-link>
           </p>
         </div>
       </a-col>
@@ -51,8 +49,10 @@ export default {
   },
   async asyncData({ params }) {
     const caseDetail = await Service.normal({ op: 9, Id: params.id });
+    const recommend = await Service.normal({ op: 28, page: 1, count: 5 });
     return {
-      info: caseDetail
+      info: caseDetail,
+      recommendList: recommend.lists,
     };
   },
   head() {
@@ -66,6 +66,11 @@ export default {
         }
       ]
     };
+  },
+  data () {
+    return {
+      baseUrl: Service.baseUrl
+    }
   }
 };
 </script>

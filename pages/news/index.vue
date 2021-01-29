@@ -1,11 +1,8 @@
 <template>
   <div class="news">
     <a-carousel autoplay>
-      <div class="swiperImg">
-        <img
-          src="https://www.topamb.com/uploadfiles/pictures/others/20180903161025_4339.jpg"
-          alt="和英阿米巴"
-        />
+      <div class="swiperImg" v-for="(item, index) of carouselList" :key="index">
+        <img :src="baseUrl + item.Img" alt="和英阿米巴">
       </div>
     </a-carousel>
     <a-row type="flex" justify="center" class="newsWrap" id="research">
@@ -144,17 +141,18 @@
 import Service from "@/utils/api";
 export default {
   async asyncData({ params }) {
-    const research = await Service.newsList({ op: 7, page: 1, count: 5 });
-    const news = await Service.newsList({ op: 6, page: 1, count: 1 });
-    const dynamic = await Service.newsList({ op: 8, page: 1, count: 5 });
-
+    const research = await Service.normal({ op: 7, page: 1, count: 5 });
+    const news = await Service.normal({ op: 6, page: 1, count: 5 });
+    const dynamic = await Service.normal({ op: 8, page: 1, count: 5 });
+    const carousel = await Service.normal({op: 19});
     return {
       researchList: research.lists,
       newsList: news.lists,
       dynamicList: dynamic.lists,
       researchTotal: research.Sum,
       newsTotal: news.Sum,
-      dynamicTotal: dynamic.Sum
+      dynamicTotal: dynamic.Sum,
+      carouselList: carousel.lists,
     };
   },
   head() {
@@ -176,7 +174,8 @@ export default {
       currentPage3: 1,
       researchTotal: 0,
       newsTotal: 0,
-      dynamicTotal: 0
+      dynamicTotal: 0,
+      baseUrl: Service.baseUrl
     };
   },
   mounted() {
@@ -195,7 +194,7 @@ export default {
     },
 
     researchChange(value) {
-      Service.newsList({
+      Service.normal({
         op: 7,
         page: value,
         count: 5
@@ -205,7 +204,7 @@ export default {
     },
 
     newsChange(value) {
-      Service.newsList({
+      Service.normal({
         op: 6,
         page: value,
         count: 5
@@ -215,7 +214,7 @@ export default {
     },
 
     dynamicChange(value) {
-      Service.newsList({
+      Service.normal({
         op: 8,
         page: value,
         count: 5

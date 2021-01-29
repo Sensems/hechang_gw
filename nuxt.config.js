@@ -5,7 +5,7 @@ export default {
     host: '0.0.0.0' // default: localhost,
   },
   head: {
-    title: 'HeChang_gw',
+    title: '和畅官网',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
